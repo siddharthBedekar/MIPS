@@ -77,13 +77,10 @@ beginSort:
 		addi $s4, $s4, -1 #j=j-2
 		li $t3, 1 
 		bge $s4, $t3, evenSort
-
-	b resetIterators #reset values of inner iterators (j) and addresses
 	
 	addi $s0, $s0, -1 #decrement outer loop (i -= 1) 
-	bgt $s0, $zero, beginSort #loop outer loop if i>0
+	bge $s0, $zero, resetIterators #loop outer loop if i>0
 
 
 done: 	li $v0,10	#end of code
 	syscall
-
