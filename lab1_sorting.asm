@@ -4,16 +4,16 @@ N: .word 0
 enterN: .asciiz "Enter N:"
 
 .text
-li $v0, 4 #print
-la $a0, enterN #store N into $a0
+li $v0, 4 #OS print
+la $a0, enterN #load entern command
 syscall
-li $v0, 5 #ask for N and store in $v0
+li $v0, 5 #OS user input - stored in $v0
 syscall
 sw $v0, N #store into address of N
 
 #allocate memory for array
 sll $a0 $t0 2 #store N*4 into $a0
-li  $v0, 9 #allocate N*4 bytes in memory
+li  $v0, 9 #allocate N*4 bytes in memory - address of allocated memory stored in $v0 (sbrk system call)
 syscall 
 move $t9, $v0 #store address of array into $t9
 
